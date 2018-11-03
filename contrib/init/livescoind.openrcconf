@@ -1,0 +1,26 @@
+# /etc/conf.d/livescoind: config file for /etc/init.d/livescoind
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/livescoin/livescoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/livescoind"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/livescoind.pid"
+
+# Where to write livescoind data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/livescoind"
+
+# User and group to own livescoind process
+#BITCOIND_USER="livescoin"
+#BITCOIND_GROUP="livescoin"
+
+# Path to livescoind executable
+#BITCOIND_BIN="/usr/bin/livescoind"
+
+# Nice value to run livescoind under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""
