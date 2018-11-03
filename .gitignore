@@ -12,7 +12,7 @@ src/livescoind
 src/livescoin-cli
 src/livescoin-tx
 src/test/test_livescoin
-src/qt/test/test_livescoon-qt
+src/qt/test/test_livescoin-qt
 
 # autoreconf
 Makefile.in
@@ -85,7 +85,7 @@ src/qt/test/moc*.cpp
 *.qm
 Makefile
 livescoin-qt
-libescoin-Qt.app
+livescoin-Qt.app
 
 # Unit-tests
 Makefile.test
