@@ -137,6 +137,9 @@ Value getgenerate(const Array& params, bool fHelp)
             "\nExamples:\n" +
             HelpExampleCli("getgenerate", "") + HelpExampleRpc("getgenerate", ""));
 
+	if (!pMiningKey)
+        return false;
+
     return GetBoolArg("-gen", false);
 }
 
@@ -403,7 +406,7 @@ Value getwork(const Array& params, bool fHelp)
             return Value::null;
 
             CScript scriptDummy = CScript() << ToByteVector(pubkey) << OP_CHECKSIG;
-            pblocktemplate = CreateNewBlock(scriptDummy, pwalletMain, fProofOfStake);
+            pblocktemplate = CreateNewBlock(scriptDummy, pwalletMain);
             if (!pblocktemplate) {
 		    LogPrintf("DEBUG getwork: cannot create a new block");
             throw JSONRPCError(RPC_OUT_OF_MEMORY, "Out of memory");
@@ -452,7 +455,7 @@ Value getwork(const Array& params, bool fHelp)
         pblock->vtx[0].vin[0].scriptSig = mapNewBlock[pdata->hashMerkleRoot].second;
         pblock->hashMerkleRoot = pblock->BuildMerkleTree();
          assert(pwalletMain != NULL);
-        return CheckWork(pblock, *pwalletMain, *CReserveKey);
+        return CheckWork(pblock, *pwalletMain, *pMiningKey);
     }
 }
 #endif
