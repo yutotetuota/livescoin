@@ -396,6 +396,7 @@ Value getwork(const Array& params, bool fHelp)
             CBlockIndex* pindexPrevNew = chainActive.Tip();
             nStart = GetTime();
              // Create new block
+            bool fProofOfStake;
             if (pblocktemplate) {
             delete pblocktemplate;
             pblocktemplate = NULL;
@@ -406,7 +407,7 @@ Value getwork(const Array& params, bool fHelp)
             return Value::null;
 
             CScript scriptDummy = CScript() << ToByteVector(pubkey) << OP_CHECKSIG;
-            pblocktemplate = CreateNewBlock(scriptDummy, pwalletMain);
+            pblocktemplate = CreateNewBlock(scriptDummy, pwalletMain, fProofOfStake);
             if (!pblocktemplate) {
 		    LogPrintf("DEBUG getwork: cannot create a new block");
             throw JSONRPCError(RPC_OUT_OF_MEMORY, "Out of memory");
