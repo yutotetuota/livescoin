@@ -393,7 +393,7 @@ Value getwork(const Array& params, bool fHelp)
             CBlockIndex* pindexPrevNew = chainActive.Tip();
             nStart = GetTime();
              // Create new block
-            pblocktemplate = CreateNewBlockWithKey(*pMiningKey);
+            pblocktemplate = CreateNewBlockWithKey(CReserveKey& reservekey, CWallet* pwallet, bool fProofOfStake);
             if (!pblocktemplate)
                 throw JSONRPCError(RPC_OUT_OF_MEMORY, "Out of memory");
             vNewBlockTemplate.push_back(pblocktemplate);
@@ -402,7 +402,7 @@ Value getwork(const Array& params, bool fHelp)
         }
         CBlock* pblock = &pblocktemplate->block; // pointer for convenience
          // Update nTime
-        UpdateTime(*pblock, pindexPrev);
+        UpdateTime(pblock, pindexPrev);
         pblock->nNonce = 0;
          // Update nExtraNonce
         static unsigned int nExtraNonce = 0;
@@ -441,7 +441,7 @@ Value getwork(const Array& params, bool fHelp)
         pblock->vtx[0].vin[0].scriptSig = mapNewBlock[pdata->hashMerkleRoot].second;
         pblock->hashMerkleRoot = pblock->BuildMerkleTree();
          assert(pwalletMain != NULL);
-        return CheckWork(pblock, *pwalletMain, *pMiningKey);
+        return CheckWork(pblock, *pwalletMain, *CReserveKey);
     }
 }
 #endif
