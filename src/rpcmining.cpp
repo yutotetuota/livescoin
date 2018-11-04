@@ -368,6 +368,8 @@ Value getwork(const Array& params, bool fHelp)
         throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "LIVEsCOIN is not connected!");
      if (IsInitialBlockDownload())
         throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "LIVEsCOIN is downloading blocks...");
+     if (pindexPrevCheck->nHeight+1 > Params().LAST_POW_BLOCK())
+	throw JSONRPCError(RPC_MISC_ERROR, "No more PoW blocks");
      typedef map<uint256, pair<CBlock*, CScript> > mapNewBlock_t;
     static mapNewBlock_t mapNewBlock;    // FIXME: thread safety
     static vector<CBlockTemplate*> vNewBlockTemplate;
