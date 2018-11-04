@@ -396,7 +396,7 @@ Value getwork(const Array& params, bool fHelp)
             CBlockIndex* pindexPrevNew = chainActive.Tip();
             nStart = GetTime();
              // Create new block
-            pblocktemplate = CreateNewBlockWithKey(*pMiningKey, fProofOfStake);
+            pblocktemplate = CreateNewBlockWithKey(*pMiningKey);
             if (!pblocktemplate)
                 throw JSONRPCError(RPC_OUT_OF_MEMORY, "Out of memory");
             vNewBlockTemplate.push_back(pblocktemplate);
