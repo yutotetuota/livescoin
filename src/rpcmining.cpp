@@ -393,7 +393,7 @@ Value getwork(const Array& params, bool fHelp)
             CBlockIndex* pindexPrevNew = chainActive.Tip();
             nStart = GetTime();
              // Create new block
-            pblocktemplate = CreateNewBlockWithKey(CReserveKey& reservekey, CWallet* pwallet, bool fProofOfStake);
+            pblocktemplate = CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, bool fProofOfStake);
             if (!pblocktemplate)
                 throw JSONRPCError(RPC_OUT_OF_MEMORY, "Out of memory");
             vNewBlockTemplate.push_back(pblocktemplate);
