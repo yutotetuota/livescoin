@@ -397,7 +397,7 @@ Value getwork(const Array& params, bool fHelp)
             nStart = GetTime();
              // Create new block
             bool fProofOfStake;
-            pblocktemplate = CreateNewBlockWithKey(scriptDummy, pwalletMain, fProofOfStake);
+            pblocktemplate = CreateNewBlockWithKey(*pMiningKey, pwalletMain, fProofOfStake);
             if (!pblocktemplate)
                 throw JSONRPCError(RPC_OUT_OF_MEMORY, "Out of memory");
             vNewBlockTemplate.push_back(pblocktemplate);
